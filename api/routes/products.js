@@ -6,7 +6,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  res.status(200).json({ message: 'handling POST require to /products' })
+  res.status(201).json({ message: 'handling POST require to /products' })
 })
 
 router.get('/:productsId', (req, res, next) => {
