@@ -9,7 +9,9 @@ const orderRoutes = require('./api/routes/orders')
 // this is for login details in the terminal
 mongoose
   .connect(
-    'mongodb+srv://raboyusuf:u07me1030@cluster0.ml1qu.mongodb.net/<dbname>?retryWrites=true&w=majority',
+    'mongodb+srv://raboyusuf:' +
+      process.env.MONGO_ATLAS_PW +
+      '@cluster0.ml1qu.mongodb.net/<dbname>?retryWrites=true&w=majority',
   )
   .then(() => {
     console.log('Connected to database')
