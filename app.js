@@ -7,14 +7,17 @@ const productRoutes = require('./api/routes/products')
 const orderRoutes = require('./api/routes/orders')
 
 // this is for login details in the terminal
-mongoose.connect(
-  'mongodb+srv://<username>:' +
-    process.env.MONGO_ATLAS_PW +
-    '@cluster0.ml1qu.mongodb.net/<dbname>?retryWrites=true&w=majority',
-  {
-    useMongoClient: true,
-  },
-)
+mongoose
+  .connect(
+    'mongodb+srv://raboyusuf:u07me1030@cluster0.ml1qu.mongodb.net/<dbname>?retryWrites=true&w=majority',
+  )
+  .then(() => {
+    console.log('Connected to database')
+  })
+  .catch((err) => {
+    console.log('Unable to connect to database')
+    console.error(err)
+  })
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -25,7 +28,7 @@ app.use((req, res, next) => {
     'Origin, X-Requested-With, Content-Type, Accept, Authorization',
   )
   if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET')
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE')
     return res.status(200).json({})
   }
   next()
