@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const productRoutes = require('./api/routes/products')
 const orderRoutes = require('./api/routes/orders')
-
+const userRoutes = require('./api/routes/user')
 // this is for login details in the terminal
 mongoose
   .connect(
@@ -35,7 +35,7 @@ app.use((req, res, next) => {
   }
   next()
 })
-
+app.use('/user', userRoutes)
 app.use('/products', productRoutes)
 app.use('/orders', orderRoutes)
 app.use('/uploads', express.static('uploads'))
